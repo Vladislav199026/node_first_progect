@@ -1,4 +1,6 @@
-type EventHandler = (data: any) => void;
+import { IEventData } from '../interface/interface';
+
+type EventHandler = (data: IEventData) => void;
 
 class EventEmitter {
   private events: Record<string, EventHandler[]> = {};
@@ -11,7 +13,7 @@ class EventEmitter {
     this.events[eventName].push(handler);
   }
 
-  public emit(eventName: string, eventData: any): void {
+  public emit(eventName: string, eventData: IEventData): void {
     const handlers = this.events[eventName];
 
     if (handlers) {
