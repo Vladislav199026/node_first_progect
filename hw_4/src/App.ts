@@ -1,8 +1,7 @@
 import express from 'express';
 import { transformTextToUppercase } from './transformText/transformText';
 import { inputFilePath, mockDataByActionType, outputFilePath } from './mockData';
-import { eventEmitter } from './onlineStore/subscriber';
-import { EActionType } from './enum/enum';
+import MyEventEmitter from './onlineStore/eventEmitter';
 
 const app = express();
 
@@ -14,7 +13,9 @@ app.listen(PORT, () => {
 
 transformTextToUppercase(inputFilePath, outputFilePath);
 
-eventEmitter.emit(EActionType.ADD, mockDataByActionType[EActionType.ADD]);
-eventEmitter.emit(EActionType.BUY, mockDataByActionType[EActionType.BUY]);
-eventEmitter.emit(EActionType.REMOVE, mockDataByActionType[EActionType.REMOVE]);
-eventEmitter.emit(EActionType.CHECKOUT, mockDataByActionType[EActionType.CHECKOUT]);
+const eventEmitter = new MyEventEmitter();
+
+eventEmitter.emit(MyEventEmitter.ADD, mockDataByActionType[MyEventEmitter.ADD]);
+eventEmitter.emit(MyEventEmitter.BUY, mockDataByActionType[MyEventEmitter.BUY]);
+eventEmitter.emit(MyEventEmitter.REMOVE, mockDataByActionType[MyEventEmitter.REMOVE]);
+eventEmitter.emit(MyEventEmitter.CHECKOUT, mockDataByActionType[MyEventEmitter.CHECKOUT]);

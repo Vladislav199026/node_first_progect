@@ -1,27 +1,34 @@
+import EventEmitter from 'events'
+import { EActionType } from '../enum/enum';
 import { IEventData } from '../interface/interface';
-
-type EventHandler = (data: IEventData) => void;
-
-class EventEmitter {
-  private events: Record<string, EventHandler[]> = {};
-
-  public on(eventName: string, handler: EventHandler): void {
-    if (!this.events[eventName]) {
-      this.events[eventName] = [];
-    }
-
-    this.events[eventName].push(handler);
+class MyEventEmitter extends EventEmitter {
+  constructor() {
+      super();
+      this.registerHandlers();
   }
 
-  public emit(eventName: string, eventData: IEventData): void {
-    const handlers = this.events[eventName];
+  static ADD = EActionType.ADD;
+  static BUY = EActionType.BUY;
+  static REMOVE = EActionType.REMOVE;
+  static CHECKOUT = EActionType.CHECKOUT;
 
-    if (handlers) {
-      handlers.forEach(handler => {
-        handler(eventData);
+  private registerHandlers(): void {
+      this.on(MyEventEmitter.ADD, (data: IEventData) => {
+          console.log('Add to cart:', data);
       });
-    }
+
+      this.on(MyEventEmitter.BUY, (data: IEventData) => {
+          console.log('Buy product:', data);
+      });
+
+      this.on(MyEventEmitter.REMOVE, (data: IEventData) => {
+          console.log('Remove from cart:', data);
+      });
+
+      this.on(MyEventEmitter.CHECKOUT, (data: IEventData) => {
+          console.log('Checkout:', data);
+      });
   }
 }
 
-export default EventEmitter;
+export default MyEventEmitter;
