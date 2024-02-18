@@ -1,0 +1,2 @@
+text in lowercase format that
+will be converted to uppercase.
