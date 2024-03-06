@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import passport from 'passport';
-import { signUp, signIn, getOwnInfo } from '../handlers/handlers.user';
-import { validateUser } from '../validation/validation.user';
+import { signUp, signIn, getOwnInfo } from '../controllers/user.controller';
+import { validateUser } from '../validation/user.validation';
 import { EBasePrefix, ERoutes } from '../enum';
 
 const router = Router();

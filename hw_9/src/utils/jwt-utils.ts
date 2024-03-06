@@ -1,6 +1,6 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { accessTokenExp, jwtAccessConfig, jwtRefreshConfig, refreshTokenExp } from './config';
-import UserModel from '../../models/userModel';
+import { accessTokenExp, jwtAccessConfig, jwtRefreshConfig, refreshTokenExp } from '../config/jwt-config';
+import UserModel from '../models/user.model';
 
 export const signTokens = async (userId: string): Promise<{
   accessToken: string;

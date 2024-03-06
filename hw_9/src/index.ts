@@ -1,11 +1,11 @@
 import express from 'express';
 import userRouter from './router/user.router';
-import { errorHandler } from './middleware/errorHandler';
-import { errorRouteNotFind } from './middleware/errorRouteNotFind';
+import { errorHandler } from './middleware/error-handler';
+import { errorRouteNotFind } from './middleware/error-route-not-found';
 import passport from 'passport';
-import { strategy } from './middleware/passportMiddleware';
+import { strategy } from './middleware/passport-middleware';
 import mongoose from 'mongoose';
-import { mongoURI } from './config/mongoConfig/config';
+import { mongoURI } from './config/mongo-config';
 
 const PORT = process.env.PORT || 3000;
 
